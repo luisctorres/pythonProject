@@ -11,17 +11,21 @@ print("\n")
 
 # user input section (buggy code)
 
-accept = input("Do you work for " + COMPANY_NAME + "?\n(yes/no): ")
+accept = input("Do you work for " + COMPANY_NAME + "?\n(yes/no): ").lower().strip()
 while accept == "" or accept[0] != 'y' and accept[0] != 'n':
-    accept = input("Do you work for " + COMPANY_NAME + "?\n(yes/no): ")
+    accept = input("Do you work for " + COMPANY_NAME + "?\n(yes/no): ").lower().strip()
 if accept[0] == "y":
     # we use .strip() to remove white spaces and .casefold() to ignore case sensitivity
     name = input("What is your name?\nName: ").strip().casefold()
-
-    if name.casefold() in (emp_name.casefold() for emp_name in EMPLOYEES):
+    # we compare our employee name input to the emp_name in our EMPLOYEES list
+    # first we do the operation in parentheses (emp_name.casefold() for emp_name in EMPLOYEES)
+    if name in (emp_name.casefold() for emp_name in EMPLOYEES):
         print("Thank you " + name.capitalize() + ", you are now checked in.")
     else:
         print("You're not an employee")
 else:
     print("This service is not for you. Exiting program...")
     exit()
+
+
+
